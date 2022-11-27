@@ -247,3 +247,15 @@ img,
 .list-book {
 	padding-bottom: 10rem;
 }
+
+.book-image {
+	padding: 2vw;
+}
+
+@media only screen and (max-width: 768px) {
+	.book-image {
+		padding: 5vw;
+		width: 100%;
+	}
+	
+}
