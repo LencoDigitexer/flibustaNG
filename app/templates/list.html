@@ -28,48 +28,39 @@
 	<div class="list-book">
 		<div class="container-xl">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+				{% for post in posts %}
 				<div class="col">
-					<div class="card shadow py-4"> <img class="d-block mx-auto mb-4 book-cover" src="http://flibusta.is/i/90/606390/cover.jpg">
-						<div class="card-body">
-							<h3 class="fs-2">Хулиномика 4.0. Хулиганская экономика. Ещё толще. Ещё длиннее</h3>
-							<p class="lead text-muted"> <a href="">Алексей Викторович Марков</a> </p>
-							<p class="card-text">Идеальный учебник для тех, кто не любит учиться по скучным талмудам! Экономика – это очень скучно. Куча непонятны заумных слов и формул? Кто вам такое сказал? Экономика это интересно и просто! Вы просто не знаете, с каким соусом ее нужно подавать, на какой стороне пережевывать и долго ли жевать. Самое полное издание. Внимание! Содержит ненормативную лексику!</p>
-							<div class="d-flex align-items-center">
-								<div class="btn-group-vertical download-link"> <a href="#" class="btn btn-primary active" aria-current="page">fb2</a> <a href="#" class="btn btn-primary">epub</a> <a href="#" class="btn btn-primary active">mobi</a> <a href="#" class="btn btn-primary">pdf</a> </div> <a href="https://omnireader.ru/#/reader?url=http://flibusta.is/b/606390/fb2" class="btn btn-primary">Читать</a> </div> <small class="text-muted">2022. 416с.</small> </div>
+					<div class="card shadow py-4">
+						{% if post.book.details.image != [] %}
+					  <img
+						class="d-block mx-auto mb-4 book-cover"
+						src="{{post.book.details.image}}"
+					  />
+					  {% endif %}
+					  <div class="card-body">
+						<h3 class="fs-2">{{post.book.name}}</h3>
+						<p class="lead text-muted"><a href="">Алексей Викторович Марков</a></p>
+						<p class="card-text">{{post.book.details.info}}</p>
+						<div class="d-flex align-items-center">
+						  <div class="btn-group-vertical download-link">
+							<a href="#" class="btn btn-primary active" aria-current="page">fb2</a>
+							<a href="#" class="btn btn-primary">epub</a>
+							<a href="#" class="btn btn-primary active">mobi</a>
+							<a href="#" class="btn btn-primary">pdf</a>
+						  </div>
+						  <a
+							href="{{post.book.details.download}}"
+							class="btn btn-primary"
+							target="_blank"
+							>Читать</a
+						  >
+						</div>
+						<small class="text-muted">2022. 416с.</small>
+					  </div>
 					</div>
-				</div>
-				<div class="col">
-					<div class="card shadow py-4"> <img class="d-block mx-auto mb-4 book-cover" src="">
-						<div class="card-body">
-							<h3 class="fs-2">Хулиномика 3.0</h3>
-							<p class="lead text-muted"> <a href="">Алексей Викторович Марков</a> </p>
-							<p class="card-text">Люди без экономического образования зачастую не понимают базовых вещей, потому что в их представлении финансы – это что-то из области бухгалтерии. Пыльные папки с подписями «счета-фактуры», мрачные тетки с гнездом аиста на голове, у них еще вечно ломается виндоуз, а «принтер печатает крякозябры, Юра-компьютерщик, помоги, у нас ничего не работает, я говорю, ничего не работает, ты что, идиот?», чудовищная программа «1С-Бухгалтерия», от одного вида которой нормальному человеку делается плохо, проверки налоговой инспекции с выносом коробок из-под ксерокса, «брат жены работает в «Газпроме» и говорит, что скоро дефолт, что делать?». Я объясню жертвам этой парадигмы, что финансы к этим явлениям не имеют никакого отношения. Финансовые рынки – это в первую очередь интересно. Как работает мировая закулиса? Когда будет дефолт (и почему его не будет)? Зачем человеку облигации? Как устроена компания Уоррена Баффета и почему именно так? Это все интересные вопросы, но суровые тетки с синими волосами наложили на них печать таинственности и присыпали полезные знания нафталином. Я хочу рассказать, как все обстоит на самом деле. У меня есть чит-коды.</p>
-							<div class="d-flex align-items-center">
-								<div class="btn-group-vertical download-link"> <a href="#" class="btn btn-primary active" aria-current="page">fb2</a> <a href="#" class="btn btn-primary">epub</a> <a href="#" class="btn btn-primary active">mobi</a> <a href="#" class="btn btn-primary">pdf</a> </div> <a href="#" class="btn btn-primary">Читать</a> </div> <small class="text-muted">2022 - 416 с.</small> </div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card shadow py-4"> <img class="d-block mx-auto mb-4 book-cover" src="http://flibusta.is/i/30/505430/cover.jpg">
-						<div class="card-body">
-							<h3 class="fs-2">Хулиномика. Хулиганская экономика. Финансовые рынки для тех,
-                                    кто их в гробу видал</h3>
-							<p class="lead text-muted"> <a href="">Алексей Викторович Марков</a> </p>
-							<p class="card-text">Идеальный учебник для тех, кто не любит учиться по скучным талмудам! Идеальный учебник для тех, кто не любит учиться по скучным талмудам! Экономика — это очень скучно. Куча непонятны заумных слов и формул? Кто вам такое сказал? Экономика это интересно и просто! Вы просто не знаете, с каким соусом ее нужно подавать, на какой стороне пережевывать и долго ли жевать. Все базовые знания о ней и много больше вы получите из книги «Хулиномика». Книга содержит нецензурную брань </p>
-							<div class="d-flex align-items-center">
-								<div class="btn-group-vertical download-link"> <a href="#" class="btn btn-primary active" aria-current="page">fb2</a> <a href="#" class="btn btn-primary">epub</a> <a href="#" class="btn btn-primary active">mobi</a> <a href="#" class="btn btn-primary">pdf</a> </div> <a href="#" class="btn btn-primary">Читать</a> </div> <small class="text-muted">2022 - 416 с.</small> </div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card shadow py-4"> <img class="d-block mx-auto mb-4 book-cover" src="http://flibusta.is/i/11/668911/cover.jpg">
-						<div class="card-body">
-							<h3 class="fs-2">Хулиномика. Хулиганская экономика. Финансовые рынки для тех,
-                                    кто их в гробу видал</h3>
-							<p class="lead text-muted"> <a href="">Алексей Викторович Марков</a> </p>
-							<p class="card-text">Алексей Марков – экономист, музыкант, писатель и почти филантроп. Автор нашумевших хулиганских книг «Жлобология», «Криптвоюматика» и «От подвала до стадиона». Вам кажется, что экономика – это очень скучно? Тогда мы идем к вам! Стоп, не пугайтесь! Вам даже не понадобится «стоп-слово», чтобы разобраться в «непонятных заумных формулах». Все намного проще, чем кажется, вы просто все еще не умеете ее готовить. Автор подаст вам экономику под таким дерзким соусом, что вы проглотите все это не жуя! Вы получите необходимые базовые знания и даже больше, а также найдете немало интересных ответов на вопросы: – Как рептилоиды управляют миром? – Что такое парадокс Ди Каприо и эффект заднего числа? – Почему биржа в России круче? – Как Павел Дуров может купить «Гугл» целиком? – Куда нельзя вкладывать деньги? * И самый главный вопрос, что хуже: не прочитать «Хулиномику» и остаться финансово-неграмотным нищим или полное прекращение работы Телеграм в России? Самое подробное и самое полное издание «Хулиномики» – ваши чит-коды на лучшую жизнь под этой обложкой! В формате PDF A4 сохранен издательский макет книги. </p>
-							<div class="d-flex align-items-center">
-								<div class="btn-group-vertical download-link"> <a href="#" class="btn btn-primary active" aria-current="page">fb2</a> <a href="#" class="btn btn-primary">epub</a> <a href="#" class="btn btn-primary active">mobi</a> <a href="#" class="btn btn-primary">pdf</a> </div> <a href="#" class="btn btn-primary">Читать</a> </div> <small class="text-muted">2022 - 416 с.</small> </div>
-					</div>
-				</div>
+				  </div>
+				  
+				{% endfor %}
 			</div>
 		</div>
 	</div>

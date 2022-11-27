@@ -1,0 +1,19 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{title}} - microblog</title>
+    {% else %}
+    <title>microblog</title>
+    {% endif %}
+  </head>
+  <body>
+    <h1>query =  {{user.nickname}}</h1>
+    {% for post in posts %}
+    <p>name = {{post.book.name}}</p>
+    <p>image = {{post.book.details.image}}</p>
+    <p>description = {{post.book.details.info}}</p>
+    <p>readurl = {{post.book.details.download}}</p>
+    <p>----</p>
+    {% endfor %}
+  </body>
+</html>

@@ -1,22 +1,18 @@
 from flask import render_template, request
 from app import app
 
+from app import api
+
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/index", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        language = request.form.get("quert")
+        query = request.form.get("query")
         title = "Результаты поиска"
-        user = {"nickname": "Miguel"}  # выдуманный пользователь
-        posts = [  # список выдуманных постов
-            {"author": {"nickname": "John"}, "body": "Beautiful day in Portland!"},
-            {
-                "author": {"nickname": "Susan"},
-                "body": "The Avengers movie was so cool!",
-            },
-        ]
-        return render_template("list.html", title=title)
+        user = {"nickname": query}  # выдуманный пользователь
+        posts = api.search(query)
+        return render_template("list.html", title=title, user=user, posts=posts)
 
     title = "FlibustaNG"
     return render_template("index.html", title=title)
