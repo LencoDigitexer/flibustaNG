@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from lxml import html
 
-domain = "https://flibusta.is"
+domain = "http://flibusta.is"
 reader = "https://omnireader.ru/#/reader?url="
 
 

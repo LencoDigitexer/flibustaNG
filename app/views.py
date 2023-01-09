@@ -12,7 +12,7 @@ def index():
         title = "Результаты поиска"
         user = {"nickname": query}  # выдуманный пользователь
         posts = api.search(query)
-        return render_template("list.html", title=title, user=user, posts=posts)
+        return render_template("newlist.html", title=title, user=user, posts=posts)
 
     title = "FlibustaNG"
     return render_template("index.html", title=title)
@@ -22,7 +22,7 @@ def index():
 def list():
     title = "Результаты поиска"
     language = request.args.get("language")
-    return render_template("list.html", title=title)
+    return render_template("newlist.html", title=title)
 
 
 @app.route("/form", methods=["GET", "POST"])
