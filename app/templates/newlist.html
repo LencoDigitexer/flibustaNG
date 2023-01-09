@@ -42,20 +42,43 @@
                         <div class="col p-4 d-flex flex-column position-static">
                             <h3 class="fs-2">{{post.book.name}}</h3>
                             <p class="lead text-muted">
-                                <a href="">Алексей Викторович Марков</a>
+                                {% for author in post.book.details.authors %}
+                                <a href="{{author.href}}">{{author.fio}}</a><br>
+                                {% endfor %}
                             </p>
                             <p class="card-text mb-auto">{{post.book.details.info}}</p>
                             <div class="d-flex align-items-center">
                                 <div class="btn-group download-link">
-                                    <a href="#" class="btn btn-primary active" aria-current="page">fb2</a>
-                                    <a href="#" class="btn btn-primary">epub</a>
-                                    <a href="#" class="btn btn-primary active">mobi</a>
-                                    <a href="#" class="btn btn-primary">pdf</a>
+                                    {% if post.book.details.file.url %}
+                                    <a href="{{post.book.details.file.url}}" class="btn btn-primary active">{{post.book.details.file.url_text}}</a>
+                                    {% endif %}
+
+                                    {% if post.book.details.file.fb2 %}
+                                    <a href="{{post.book.details.file.fb2}}" class="btn btn-primary active">{{post.book.details.file.fb2_text}}</a>
+                                    {% endif %}
+
+                                    {% if post.book.details.file.epub %}
+                                    <a href="{{post.book.details.file.epub}}" class="btn btn-primary">{{post.book.details.file.epub_text}}</a>
+                                    {% endif %}
+
+                                    {% if post.book.details.file.mobi %}
+                                    <a href="{{post.book.details.file.mobi}}" class="btn btn-primary active">{{post.book.details.file.mobi_text}}</a>
+                                    {% endif %}
+
+                                    {% if post.book.details.file.pdf  %}
+                                    <a href="{{post.book.details.file.pdf}}" class="btn btn-primary">{{post.book.details.file.pdf_text}}</a>
+                                    {% endif %}
+
+                                    {% if post.book.details.file.download_url %}
+                                    <a href="{{post.book.details.file.download_url}}" class="btn btn-primary">{{post.book.details.file.download_text}}</a>
+                                    {% endif %}
                                 </div>
-                                <a href="{{post.book.details.download}}"
-                                    class="btn btn-primary">Читать</a>
+                                <a href="{{post.book.details.read}}"
+                                    class="btn btn-primary" target="_blank">Читать</a>
                             </div>
-                            <small class="text-muted">2022. 416с.</small>
+                            {% if post.book.details.pages %}
+                            <small class="text-muted">{{post.book.details.pages}}</small>
+                            {% endif %}
                         </div>
 
 

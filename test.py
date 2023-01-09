@@ -1,16 +1,14 @@
-# flask_tor_example.py
-from flask import Flask
-from flask_tor import run_with_tor
-
-app = Flask(__name__)
-port = run_with_tor()
+import unittest
+from app import api
 
 
-@app.route("/")
-def hello():
-    """ return hello world"""
-    return "Hello World!"
+class TestStringMethods(unittest.TestCase):
+
+    def test(self):
+        handler = api.search("тайна часовни ")
+        print(handler)
+        #print(handler[0]["book"]["details"]["file"]["pdf"])
 
 
-if __name__ == "__main__":
-    app.run(port=port)
+if __name__ == '__main__':
+    unittest.main()
