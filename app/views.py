@@ -1,6 +1,7 @@
 from flask import render_template, request, send_file
 from flask import Response
 from flask import stream_with_context
+from flask import Flask, send_from_directory
 import requests
 from app import app
 
@@ -38,6 +39,12 @@ def download(filename, index):
     '''return book image'''
     path = domain + "/" + index + "/" + filename
     return file_proxy(path)
+
+
+@app.route('/ads.txt')
+def ads():
+    path = 'ads.txt'
+    return render_template("ads.txt")
 
 
 @app.route("/list")
