@@ -35,9 +35,8 @@ def get_book_details(book_id):
     else:
         image = ""
 
-    authors_list = []
-
     # авторы книги
+    authors_list = []
     authors_fio = tree.xpath('/html/body/div/div[2]/div[1]/div/a')
     for author in authors_fio:
         # учитываем только ссылки с авторами (убираем ссылки "следить")
@@ -47,58 +46,17 @@ def get_book_details(book_id):
                 "href": author.attrib["href"]
             })
 
-    # парсинг файлов для скачивания
-    files = {}
     read = reader + domain + "/b/" + str(book_id) + "/download"
 
-    download_url = tree.xpath('//*[@id="main"]/div[3]/a/@href')
-    download_text = tree.xpath('//*[@id="main"]/div[3]/a/text()')
-
-    # если ссылка единственная и это не кнопка "читать"
-    if (download_url and (download_text[0] != "(читать)")):
-        files["download_url"] = download_url[0]
-        files["download_text"] = download_text[0]
-    else:
-
-        url = tree.xpath('/html/body/div/div[2]/div[1]/div/div[3]/a[2]/@href')
-        url_text = tree.xpath(
-            '/html/body/div/div[2]/div[1]/div/div[3]/a[2]/text()')
-
-        fb2 = tree.xpath('/html/body/div/div[2]/div[1]/div/div[3]/a[3]/@href')
-        fb2_text = tree.xpath(
-            '/html/body/div/div[2]/div[1]/div/div[3]/a[3]/text()')
-
-        epub = tree.xpath('/html/body/div/div[2]/div[1]/div/div[3]/a[4]/@href')
-        epub_text = tree.xpath(
-            '/html/body/div/div[2]/div[1]/div/div[3]/a[4]/text()')
-
-        mobi = tree.xpath('/html/body/div/div[2]/div[1]/div/div[3]/a[5]/@href')
-        mobi_text = tree.xpath(
-            '/html/body/div/div[2]/div[1]/div/div[3]/a[5]/text()')
-
-        pdf = tree.xpath('/html/body/div/div[2]/div[1]/div/div[3]/a[6]/@href')
-        pdf_text = tree.xpath(
-            '/html/body/div/div[2]/div[1]/div/div[3]/a[6]/text()')
-
-        if url and url_text[0] != "(читать)":
-            files["url"] = url[0]
-            files["url_text"] = url_text[0]
-
-        if fb2:
-            files["fb2"] = fb2[0]
-            files["fb2_text"] = fb2_text[0]
-
-        if epub:
-            files["epub"] = epub[0]
-            files["epub_text"] = epub_text[0]
-
-        if mobi:
-            files["mobi"] = mobi[0]
-            files["mobi_text"] = mobi_text[0]
-
-        if pdf:
-            files["pdf"] = pdf[0]
-            files["pdf_text"] = pdf_text[0]
+    # парсинг файлов для скачивания
+    files_list = []
+    urls = tree.xpath('/html/body/div/div[2]/div[1]/div/div[3]/a')
+    for url in urls:
+        if "/b/" in url.attrib["href"] and url.text != "(читать)":
+            files_list.append({
+                "file_name": url.text,
+                "href": url.attrib["href"]
+            })
 
     details = {
         "info": info,
@@ -106,7 +64,7 @@ def get_book_details(book_id):
         "image": image,
         "authors": authors_list,
         "read": read,
-        "file": files,
+        "files": files_list,
     }
     return details
 
